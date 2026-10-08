@@ -3,7 +3,7 @@ run-name: Build APK ${{ github.sha }}
 on:
   push:
     branches: [ main ]
-  workflow_dispatch: # 网页手动一键触发
+  workflow_dispatch:
 
 jobs:
   build:
@@ -18,17 +18,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Install Gradle 8.7
+      - name: Download Gradle 8.7
         run: |
           sudo apt update
           sudo apt install -y unzip
           wget https://services.gradle.org/distributions/gradle-8.7-bin.zip
           unzip -q gradle-8.7-bin.zip
-          export PATH=$PWD/gradle-8.7/bin:$PATH
-          gradle --version
 
-      - name: Generate Gradle Wrapper（自动生成gradlew + wrapper文件）
-        run: gradle wrapper --gradle-version=8.7
+      - name: Generate Gradle Wrapper with Gradle 8.7
+        run: ./gradle-8.7/bin/gradle wrapper --gradle-version=8.7
 
       - name: Grant execute permission
         run: chmod +x gradlew
