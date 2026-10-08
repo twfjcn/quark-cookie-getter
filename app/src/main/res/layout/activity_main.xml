@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnReload"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="重新加载登录页"/>
+        <Button
+            android:id="@+id/btnGetCookie"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="提取Cookie"/>
+        <Button
+            android:id="@+id/btnCopy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="复制"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="状态：未登录，请在下方网页扫码登录夸克网盘"
+        android:padding="4dp"/>
+
+    <EditText
+        android:id="@+id/etCookie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minLines="4"
+        android:maxLines="6"
+        android:scrollbars="vertical"
+        android:hint="提取的Cookie会显示在这里，可以全选复制"/>
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>
