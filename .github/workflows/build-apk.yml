@@ -17,14 +17,24 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Download Gradle 8.7
+        run: |
+          sudo apt update
+          sudo apt install -y unzip
+          wget https://services.gradle.org/distributions/gradle-8.7-bin.zip
+          unzip -q gradle-8.7-bin.zip
+
+      - name: Generate Gradle Wrapper with Gradle 8.7
+        run: ./gradle-8.7/bin/gradle wrapper --gradle-version=8.7
+
       - name: Grant execute permission
         run: chmod +x gradlew
 
       - name: Build Release APK
         run: ./gradlew assembleRelease
 
-      # 新增调试，看apk真实路径（测试成功后可以删掉这一步）
-      - name: Find generated APK
+      # 新增：查找APK，打印路径（跑通后可删除）
+      - name: Find APK file
         run: find app/build/outputs/apk -name "*.apk"
 
       - name: Upload APK Artifact
@@ -32,4 +42,3 @@ jobs:
         with:
           name: quark-cookie-apk
           path: app/build/outputs/apk/release/*.apk
-          if-no-files-found: warn
